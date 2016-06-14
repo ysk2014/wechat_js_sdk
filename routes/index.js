@@ -3,7 +3,7 @@ var router = express.Router();
 var cors = require('cors');
 var ctrl = require('../ctrl');
 
-app.all('*',function (req, res, next) {
+router.all('*',function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
 	res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -16,7 +16,7 @@ app.all('*',function (req, res, next) {
 	}
 });
 
-app.use(cors());
+router.use(cors());
 
 router.get('/', function(req, res, next) {
 	res.send('启动成功');
