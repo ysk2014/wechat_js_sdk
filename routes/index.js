@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var cors = require('cors');
+
 var ctrl = require('../ctrl');
 
 //设置跨域访问
@@ -13,7 +13,7 @@ var ctrl = require('../ctrl');
 //     next();
 // });
 
-router.use(cors());
+// router.use(cors());
 
 router.get('/', function(req, res, next) {
 	res.send('启动成功');
