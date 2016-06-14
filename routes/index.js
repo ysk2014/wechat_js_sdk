@@ -18,7 +18,7 @@ var ctrl = require('../ctrl');
 router.get('/', function(req, res, next) {
 	res.send('启动成功');
 });
-router.post('/', function(req, res, next) {
+router.post('/sg', function(req, res, next) {
 	res.set({
 		"Access-Control-Allow-Origin": "*"
 		,"Access-Control-Allow-Methods": "POST,GET"
