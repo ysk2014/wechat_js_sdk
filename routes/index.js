@@ -16,7 +16,7 @@ var ctrl = require('../ctrl');
 // router.use(cors());
 
 router.get('/', function(req, res, next) {
-	res.send('启动成功');
+	res.send('启动成功!!!!');
 });
 router.post('/sg', function(req, res, next) {
 	res.set({
