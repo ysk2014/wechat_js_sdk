@@ -5,7 +5,7 @@ var fs = require('fs');
 var path = require('path');
 
 var config = require('../config');
-var cachePath = path.resolve(process.cwd(), 'cache.json')
+var cachePath = '../cache.json';
 var wechatData = require(cachePath);
 
 var expireTime = 7200 - 100;
