@@ -19,6 +19,11 @@ router.get('/', function(req, res, next) {
 	res.send('启动成功');
 });
 router.post('/', function(req, res, next) {
+	res.set({
+		"Access-Control-Allow-Origin": "*"
+		,"Access-Control-Allow-Methods": "POST,GET"
+		,"Access-Control-Allow-Credentials": "true"
+	});
   	ctrl(req, res);
 });
 
