@@ -3,20 +3,17 @@ var router = express.Router();
 var cors = require('cors');
 var ctrl = require('../ctrl');
 
-router.all('*',function (req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-	res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-
-	if (req.method == 'OPTIONS') {
-		res.send(200); /让options请求快速返回/
-	}
-	else {
-		next();
-	}
+//设置跨域访问
+router.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1')
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
 });
 
-router.use(cors());
+// router.use(cors());
 
 router.get('/', function(req, res, next) {
 	res.send('启动成功');
