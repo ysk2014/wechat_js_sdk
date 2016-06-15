@@ -76,6 +76,7 @@ var getTicket = function(url, res, accessData) {
 		var str = '', resp;
 		_res.on('data', function(data){
 			str += data;
+			console.log(11);
 		});
 		_res.on('end', function(){
 			console.log('return ticket:  ' + str);
