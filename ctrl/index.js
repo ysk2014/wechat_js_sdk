@@ -74,6 +74,7 @@ var getToken = function(url, res) {
 var getTicket = function(url, res, accessData) {
 	console.log(accessData.access_token);
 	https.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+ accessData.access_token +'&type=jsapi', function(_res){
+		console.log(_res);
 		var str = '', resp;
 		console.log(8888);
 		_res.on('data', function(data){
