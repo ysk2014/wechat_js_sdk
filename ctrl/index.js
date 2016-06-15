@@ -113,9 +113,8 @@ var getTicket = function(url, res, accessData) {
 				url: url
 			});
 		});
-		_res.on('error', function(error) {
-			console.log(error);
-		})
+	}).on('error', function(err) {
+		console.log(err);
 	});
 }
 
