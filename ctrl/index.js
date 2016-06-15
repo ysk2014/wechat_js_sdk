@@ -6,7 +6,7 @@ var path = require('path');
 var request = require('request');
 
 var config = require('../config');
-var cachePath = '../cache.json';
+var cachePath = path.resolve(process.cwd(), 'cache.json');
 var wechatData = require(cachePath);
 
 var expireTime = 7200 - 100;
@@ -61,7 +61,6 @@ var getToken = function(url, res) {
 			}catch(e){
 		        return errorRender(res, '解析access_token返回的JSON数据错误', str);
 			}
-			console.log(resp);
 			getTicket(url, res, resp);
 		});
 	})
@@ -69,47 +68,7 @@ var getToken = function(url, res) {
 
 // 获取微信签名所需的ticket
 var getTicket = function(url, res, accessData) {
-	console.log(accessData.access_token);
 	var getticketUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+accessData.access_token+'&type=jsapi';
-	// console.log(getticketUrl);
-	// https.get(getticketUrl, function(_res){
-	// 	var str = '', resp;
-	// 	_res.on('data', function(data){
-	// 		str += data;
-	// 	});
-	// 	_res.on('end', function(){
-	// 		console.log('return ticket:  ' + str);
-	// 		try{
-	// 			resp = JSON.parse(str);
-	// 		}catch(e){
-	// 	        return errorRender(res, '解析远程JSON数据错误', str);
-	// 		}
-			
-	// 		var appid = appid;
-	// 		var ts = createTimeStamp();
-	// 		var nonceStr = createNonceStr();
-	// 		var ticket = resp.ticket;
-	// 		var signature = calcSignature(ticket, nonceStr, ts, url);
-
-	// 		wechatData[url] = {
-	// 			nonceStr: nonceStr,
-	// 			appid: appid,
-	// 			timestamp: ts,
-	// 			signature: signature,
-	// 			url: url
-	// 		};
-			
-	// 		writeFile(cachePath, JSON.stringify(wechatData));
-
-	// 		res.json({
-	// 			nonceStr: nonceStr,
-	// 			timestamp: ts,
-	// 			appid: appid,
-	// 			signature: signature,
-	// 			url: url
-	// 		});
-	// 	});
-	// });
 	request(getticketUrl, function(error, _res, body) {
 		var resp;
 		if (!error && _res.statusCode == 200) {
@@ -142,6 +101,8 @@ var getTicket = function(url, res, accessData) {
 				signature: signature,
 				url: url
 			});
+		} else {
+			console.log(error);
 		}
 	});
 }
