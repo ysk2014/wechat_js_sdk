@@ -56,7 +56,11 @@ var getToken = function(url, res) {
 		_res.on('end', function(){
 			console.log('return access_token:  ' + str);
 			try{
-				var resp = JSON.parse(str);
+				if (Object.prototype.toString.call(str) == '[object String]') {
+					var resp = JSON.parse(str);
+				} else {
+					var resp = str;
+				}
 			}catch(e){
 		        return errorRender(res, '解析access_token返回的JSON数据错误', str);
 			}
