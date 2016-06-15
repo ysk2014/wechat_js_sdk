@@ -83,7 +83,7 @@ var getTicket = function(url, res, accessData) {
 			var nonceStr = createNonceStr();
 			var ticket = resp.ticket;
 			var signature = calcSignature(ticket, nonceStr, ts, url);
-
+console.log('appId:'+appid);
 			wechatData[url] = {
 				nonceStr: nonceStr,
 				appid: appid,
