@@ -78,7 +78,7 @@ var getTicket = function(url, res, accessData) {
 		        return errorRender(res, '解析远程JSON数据错误', body);
 			}
 			
-			var appid = appid;
+			var appid = config.appid;
 			var ts = createTimeStamp();
 			var nonceStr = createNonceStr();
 			var ticket = resp.ticket;
