@@ -56,11 +56,11 @@ var getToken = function(url, res) {
 		_res.on('end', function(){
 			console.log('return access_token:  ' + str);
 			try{
-				if (Object.prototype.toString.call(str) == '[object String]') {
+				// if (Object.prototype.toString.call(str) == '[object String]') {
 					var resp = JSON.parse(str);
-				} else {
-					var resp = str;
-				}
+				// } else {
+					// var resp = str;
+				// }
 			}catch(e){
 		        return errorRender(res, '解析access_token返回的JSON数据错误', str);
 			}
@@ -71,15 +71,14 @@ var getToken = function(url, res) {
 }
 
 // 获取微信签名所需的ticket
-var getTicket = function(url, res) {
-	// console.log(accessData.access_token);
-	https.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=uJ9e5Tki3WCE3duzTuunrIOzJjQDu2ErlPk2RXrqv1Qh4SEMiIqctwSpCGxI7bVNPP82XMCiCr5Sy7xX9B3fSEvX8ReXofJh5OQUk-Z0-bQdvoyRFzvI2C1a-Ec3L8sWWXHeAAARSC&type=jsapi', function(_res){
-		console.log(_res);
+var getTicket = function(url, res, accessData) {
+	console.log(accessData.access_token);
+	var getticketUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+accessData.access_token+'&type=jsapi';
+	console.log(getticketUrl);
+	https.get(getticketUrl, function(_res){
 		var str = '', resp;
-		console.log(8888);
 		_res.on('data', function(data){
 			str += data;
-			console.log(9999);
 		});
 		_res.on('end', function(){
 			console.log('return ticket:  ' + str);
@@ -113,8 +112,6 @@ var getTicket = function(url, res) {
 				url: url
 			});
 		});
-	}).on('error', function(err) {
-		console.log(err);
 	});
 }
 
@@ -144,7 +141,7 @@ module.exports = function(req, res) {
 			});
 		}
 	} else {
-		getTicket(_url, res);
+		getToken(_url, res);
 	}
 }
 
