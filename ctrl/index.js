@@ -72,11 +72,13 @@ var getToken = function(url, res) {
 
 // 获取微信签名所需的ticket
 var getTicket = function(url, res, accessData) {
+	console.log(7777);
 	https.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+ accessData.access_token +'&type=jsapi', function(_res){
 		var str = '', resp;
+		console.log(8888);
 		_res.on('data', function(data){
 			str += data;
-			console.log(11);
+			console.log(9999);
 		});
 		_res.on('end', function(){
 			console.log('return ticket:  ' + str);
