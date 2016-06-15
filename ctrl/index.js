@@ -72,8 +72,8 @@ var getToken = function(url, res) {
 
 // 获取微信签名所需的ticket
 var getTicket = function(url, res, accessData) {
-	console.log(accessData.access_token);
-	var getticketUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+accessData.access_token+'&type=jsapi';
+	// console.log(accessData.access_token);
+	var getticketUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=giQssx75D7eAbvBWJ6rLI5vQWtlVJsnDzKA4rdX1DQ5DllwdOcQN5tKwjeNwDs5KNB5rwa07ZNeePRR8XjP-7cIxOX5CoASmqWCMGyNHaQwNBoQF2Ykcym0UdIY2yFWWFNMiABAXFE&type=jsapi";
 	console.log(getticketUrl);
 	https.get(getticketUrl, function(_res){
 		var str = '', resp;
@@ -141,7 +141,7 @@ module.exports = function(req, res) {
 			});
 		}
 	} else {
-		getToken(_url, res);
+		getTicket(_url, res);
 	}
 }
 
