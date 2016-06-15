@@ -64,7 +64,7 @@ var getToken = function(url, res) {
 			}catch(e){
 		        return errorRender(res, '解析access_token返回的JSON数据错误', str);
 			}
-
+			console.log(resp);
 			getTicket(url, res, resp);
 		});
 	})
