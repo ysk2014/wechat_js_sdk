@@ -61,13 +61,13 @@ var getToken = function(url, res) {
 		        return errorRender(res, '解析access_token返回的JSON数据错误', str);
 			}
 
-			getTicket(url, index, res, resp);
+			getTicket(url, res, resp);
 		});
 	})
 }
 
 // 获取微信签名所需的ticket
-var getTicket = function(url, index, res, accessData) {
+var getTicket = function(url, res, accessData) {
 	https.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+ accessData.access_token +'&type=jsapi', function(_res){
 		var str = '', resp;
 		_res.on('data', function(data){
@@ -110,7 +110,6 @@ var getTicket = function(url, index, res, accessData) {
 
 
 module.exports = function(req, res) {
-	var index = req.params.index;
 	var _url = req.body.url.indexOf('#') > 0 ? req.body.url.split('#')[0] : req.body.url;
 	var signatureObj = wechatData[_url];
 
